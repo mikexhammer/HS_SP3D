@@ -161,6 +161,7 @@ public class physicsCharacterControl : MonoBehaviour
                 Jump();
             }
             
+            Debug.Log("test");
             
     }
     
