@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class TipToePlatform : MonoBehaviour
 {
-    
-    public bool showPath = false;
     enum State
     {
         Default,
@@ -16,7 +14,7 @@ public class TipToePlatform : MonoBehaviour
     State state = State.Default;
     MeshRenderer meshRend;
     BoxCollider bCollider;
-    public bool isPath;
+    public bool isPath = false;
     public Material defaultMaterial;
 
     //Variables Touched State
@@ -27,18 +25,12 @@ public class TipToePlatform : MonoBehaviour
     //Variables Dead State
     float deadTimer = 0.0f;
     public float maxDeadTime = 3.0f;
-    
-    
-    //Test for Path
-    public Material testMaterial;
 
     void Start()
     {
         meshRend = GetComponent<MeshRenderer>();
         meshRend.material = defaultMaterial;
         bCollider = GetComponent<BoxCollider>();
-
-
     }
 
     void Update()
@@ -47,13 +39,15 @@ public class TipToePlatform : MonoBehaviour
         {
             //Count down timer until respawn of platform
             deadTimer -= Time.deltaTime;
+            meshRend.material.SetFloat("_Vanishing", Mathf.Max(0, deadTimer - maxDeadTime + 0.5f));
+            //Debug.Log(Mathf.Max(0, deadTimer - 2));
             if (deadTimer <= 0.0f)
             {
                 ChangeState(State.Default);
                 deadTimer = 0.0f;
-                meshRend.enabled = true;
+                //meshRend.enabled = true;
                 bCollider.enabled = true;
-                meshRend.material = defaultMaterial;
+                meshRend.material.SetFloat("_Vanishing", 1);
             }
         }
         if (state == State.Touched)
@@ -64,19 +58,6 @@ public class TipToePlatform : MonoBehaviour
             {
                 ChangeState(State.Default);
                 touchedTimer = 0.0f;
-                meshRend.material = defaultMaterial;
-            }
-        }
-
-        //Test for Path
-        if (showPath)
-        {
-            if (isPath)
-            {
-                meshRend.material = testMaterial;
-            }
-            else
-            {
                 meshRend.material = defaultMaterial;
             }
         }
@@ -93,7 +74,7 @@ public class TipToePlatform : MonoBehaviour
         {
             ChangeState(State.Dead);
             deadTimer = maxDeadTime;
-            meshRend.enabled = false;
+            //meshRend.enabled = false;
             bCollider.enabled = false;
         }
         else
