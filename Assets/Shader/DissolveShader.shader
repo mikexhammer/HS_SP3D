@@ -2,12 +2,12 @@ Shader "Custom/DissolveShader"
 {
    Properties
     {
-        _Color ("Color", Color) = (1,1,1,1)
+        _Color ("Color", Color) = (1,1,1,1) // Farbe des Objektes
         _MainTex ("Albedo (RGB)", 2D) = "white" {} // Albedo Textur setzen
         _NoiseTex("Noise Texture", 2D) = "white" {} // Noise Textur setzen
-        _Glossiness ("Smoothness", Range(0,1)) = 0.5
-        _Metallic ("Metallic", Range(0,1)) = 0.0
-        _Vanishing("Vanishing", Range(0,1)) = 0.5 // Grenzwert für Auflösung
+        _Glossiness ("Smoothness", Range(0,1)) = 0.5 // Glanz des Objektes
+        _Metallic ("Metallic", Range(0,1)) = 0.0 // Metallischer Glanz des Objektes
+        _Vanishing("Vanishing", Range(0,1)) = 0.5 // Wert, ab dem das Objekt verschwindet
         _LightBandColor("Light Band Color", Color) = (0.36, 0.95, 0.95, 1) // Farbe des Übergangsbereiches
         _LightBandThreshold("Light Band Threshold", Range(0,1)) = 0.054 // Breite des Übergangsbereiches
     }
@@ -26,13 +26,14 @@ Shader "Custom/DissolveShader"
 
         sampler2D _MainTex;
         sampler2D _NoiseTex;
-
+        
         struct Input
         {
             float2 uv_MainTex;
             float2 uv_NoiseTex;
         };
 
+        // Properties set from the material inspector
         half _Glossiness;
         half _Metallic;
         half _Vanishing;
@@ -47,6 +48,7 @@ Shader "Custom/DissolveShader"
         // put more per-instance properties here
         UNITY_INSTANCING_BUFFER_END(Props)
 
+        // 
         void surf (Input IN, inout SurfaceOutputStandard o)
         {
             // Albedo comes from a texture tinted by color
@@ -58,17 +60,18 @@ Shader "Custom/DissolveShader"
 
             float4 dissolveValue = tex2D(_NoiseTex, IN.uv_NoiseTex); // Farbwert der Noise Textur
 
-            // TODO: Wie kann man jetzt hier prüfen ob der Farbwert unter dem eingestellten vanashing wert ist?
+            // Wenn der Farbwert der Noise Textur kleiner als der Vanishing Wert ist, dann wird das Objekt transparent
             if(dissolveValue.r < _Vanishing)
             {
                 o.Alpha = 1;
-                
+                // Wenn der Farbwert der Noise Textur größer als der Vanishing Wert minus dem LightBandThreshold ist, dann wird das Objekt transparent
                 if(dissolveValue.r > _Vanishing - _LightBandThreshold)
                 {
                     o.Alpha = 20;
                     o.Emission = _LightBandColor;
                 }
-            } else
+            }
+            else 
             {
                 o.Albedo = half3(0, 0, 0);
                 o.Alpha = 0;

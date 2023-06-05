@@ -194,6 +194,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MikxsNextFallGuyModel
       objectReference: {fileID: 0}
+    - target: {fileID: 1630794972795428178, guid: f2f604c08b9c89e49b928d80fe6f1be7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bd7a3e5c4870b5448ba42fdf8a10a3de, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2f604c08b9c89e49b928d80fe6f1be7, type: 3}
 --- !u!1 &75560380 stripped
@@ -1260,7 +1264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110526894}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.199385, y: -0.2, z: 15.013223}
+  m_LocalPosition: {x: -21.199385, y: -0.55, z: 15.013223}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2129,7 +2133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 772967694226464684, guid: 2169297674d446142aa6ad35aaced321, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.2
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 772967694226464684, guid: 2169297674d446142aa6ad35aaced321, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2239,7 +2243,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.8377992, z: 0.24595886}
+  m_Size: {x: 0.2, y: 0.71, z: 0.24595886}
   m_Center: {x: -4.4605775e-10, y: -0.25275016, z: -0.09462799}
 --- !u!33 &4285205907857029460
 MeshFilter:
@@ -2844,7 +2848,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.8377992, z: 0.24595886}
+  m_Size: {x: 0.2, y: 0.71, z: 0.24595886}
   m_Center: {x: 0, y: -0.25275016, z: -0.09462809}
 --- !u!33 &8956427205016031926
 MeshFilter:
