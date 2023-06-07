@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
+using Unity.AI.Navigation;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class TipToeLogic : MonoBehaviour
 {
     public bool showPath = false;
@@ -16,9 +18,13 @@ public class TipToeLogic : MonoBehaviour
     //Abstand zwischen den Platten
     public float spacing = 0.3f;
 
+    private NavMeshSurface nms;
     
     void Start()
     {
+        // Setze NavMeshSurface
+        nms = GetComponent<NavMeshSurface>();
+        
         // Berechnung der Grösse der Platten
         float platformWidth = (areaWidth - (width - 1) * spacing) / width;
         float platformDepth = (areaDepth - (depth - 1) * spacing) / depth;
@@ -42,8 +48,26 @@ public class TipToeLogic : MonoBehaviour
 
                 // Setzen des Pfades durch Überprüfung ob die Koordinate in der Menge enthalten ist
                 tipToePlatform.isPath = path.Contains(new Vector2Int(xIndex, zIndex));
+                NavMeshModifier nmm = platform.GetComponent<NavMeshModifier>();
+                Debug.Log("Area: " );
+                nmm.overrideArea = true;
+
+                if (tipToePlatform.isPath)
+                {
+                    Debug.Log("True");
+                    nmm.area = 0;
+                }
+                else
+                {
+                    Debug.Log("False");
+                    nmm.area = 1;
+                }
             }
         }
+        
+        // Berechnung des NavMeshes
+        nms.BuildNavMesh();
+        
     }
 
   
