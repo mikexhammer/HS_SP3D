@@ -60,17 +60,19 @@ Shader "Custom/DissolveShader"
 
             float4 dissolveValue = tex2D(_NoiseTex, IN.uv_NoiseTex); // Farbwert der Noise Textur
 
-            // Wenn der Farbwert der Noise Textur kleiner als der Vanishing Wert ist, dann wird das Objekt transparent
+            // Wenn der Farbwert der Noise Textur kleiner als der Vanishing Wert ist, dann wird o.Alpha auf 1 gesetzt, ansonsten auf 0
             if(dissolveValue.r < _Vanishing)
             {
                 o.Alpha = 1;
-                // Wenn der Farbwert der Noise Textur größer als der Vanishing Wert minus dem LightBandThreshold ist, dann wird das Objekt transparent
+
+                // Wenn der Farbwert der Noise Textur größer als der Vanishing Wert minus dem LightBandThreshold ist, dann wird o.Alpha auf 20 gesetzt und o.Emission auf die LightBandColor
                 if(dissolveValue.r > _Vanishing - _LightBandThreshold)
                 {
                     o.Alpha = 20;
                     o.Emission = _LightBandColor;
                 }
             }
+            // Sonst vollständig transparent
             else 
             {
                 o.Albedo = half3(0, 0, 0);
