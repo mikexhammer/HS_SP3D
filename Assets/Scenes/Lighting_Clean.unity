@@ -559,6 +559,7 @@ GameObject:
   - component: {fileID: 136918861}
   - component: {fileID: 136918860}
   - component: {fileID: 136918859}
+  - component: {fileID: 136918863}
   m_Layer: 0
   m_Name: Cube (17)
   m_TagString: Untagged
@@ -644,6 +645,26 @@ Transform:
   m_Father: {fileID: 1159495384}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &136918863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136918858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0, z: 0}
+  m_EndPoint: {x: 0, y: 0.75, z: 1.5}
+  m_Width: 0
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!1 &151592717
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,6 +1064,7 @@ GameObject:
   - component: {fileID: 262670247}
   - component: {fileID: 262670246}
   - component: {fileID: 262670245}
+  - component: {fileID: 262670249}
   m_Layer: 0
   m_Name: Cube (16)
   m_TagString: Untagged
@@ -1128,6 +1150,26 @@ Transform:
   m_Father: {fileID: 1159495384}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &262670249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262670244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0, y: 0, z: 0}
+  m_EndPoint: {x: 0, y: 0.75, z: 1.5}
+  m_Width: 0
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!1001 &274190746
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2796,7 +2838,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.8469e-39, y: NaN, z: 0, w: NaN}
+  m_BoundingSphereOverride: {x: 1.8467811e+25, y: 1.71107e+19, z: 1.5427733e+25, w: 4.465434e+30}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -3103,7 +3145,7 @@ GameObject:
   - component: {fileID: 837590874}
   - component: {fileID: 837590873}
   - component: {fileID: 837590872}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3133,7 +3175,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837590868}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5000001
   m_Height: 2
@@ -3389,7 +3431,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 9.1835e-41, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.8467811e+25, y: 1.71107e+19, z: 1.5427733e+25, w: 4.465434e+30}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -4691,8 +4733,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1271777012}
-  - component: {fileID: 1271777013}
-  m_Layer: 0
+  - component: {fileID: 1271777014}
+  - component: {fileID: 1271777015}
+  m_Layer: 7
   m_Name: obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4716,7 +4759,23 @@ Transform:
   m_Father: {fileID: 481373326}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1271777013
+--- !u!54 &1271777014
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271777011}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &1271777015
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6505,6 +6564,7 @@ GameObject:
   - component: {fileID: 1677500948}
   - component: {fileID: 1677500947}
   - component: {fileID: 1677500946}
+  - component: {fileID: 1677500950}
   m_Layer: 0
   m_Name: Cube (6)
   m_TagString: Untagged
@@ -6590,6 +6650,26 @@ Transform:
   m_Father: {fileID: 1159495384}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1677500950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1677500945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 0.03, y: 0.15, z: -2.11}
+  m_EndPoint: {x: 0, y: -1.06, z: -3.43}
+  m_Width: 0
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
 --- !u!1 &1682627013
 GameObject:
   m_ObjectHideFlags: 0
@@ -6845,7 +6925,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.8469e-39, y: 0, z: 0, w: 3e-45}
+  m_BoundingSphereOverride: {x: 1.8467811e+25, y: 1.71107e+19, z: 1.5427733e+25, w: 4.465434e+30}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -7228,6 +7308,9 @@ GameObject:
   - component: {fileID: 1830278083}
   - component: {fileID: 1830278082}
   - component: {fileID: 1830278086}
+  - component: {fileID: 1830278089}
+  - component: {fileID: 1830278088}
+  - component: {fileID: 1830278087}
   m_Layer: 0
   m_Name: Cube (7)
   m_TagString: Untagged
@@ -7326,8 +7409,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 2.75, y: -0.23, z: -2.5}
-  m_EndPoint: {x: 0, y: 0, z: 2.5}
+  m_StartPoint: {x: 2.79, y: -1, z: -1.8}
+  m_EndPoint: {x: 0.05, y: 0, z: -0.58}
+  m_Width: 0
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
+--- !u!114 &1830278087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830278081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: -3.12, y: 0.86, z: -0.15}
+  m_EndPoint: {x: 0.05, y: 0, z: -0.58}
+  m_Width: 0
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
+--- !u!114 &1830278088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830278081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: 3.12, y: 0.86, z: -0.15}
+  m_EndPoint: {x: 0.05, y: 0, z: -0.58}
+  m_Width: 0
+  m_CostModifier: -1
+  m_Bidirectional: 1
+  m_AutoUpdatePosition: 0
+  m_Area: 0
+--- !u!114 &1830278089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1830278081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eeb5dc026fdf4b488bc7ae0138ab719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_StartPoint: {x: -2.79, y: -1, z: -1.8}
+  m_EndPoint: {x: 0.05, y: 0, z: -0.58}
   m_Width: 0
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -7422,7 +7565,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 1.8467811e+25, y: 1.71107e+19, z: 1.5427733e+25, w: 4.465434e+30}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -7439,7 +7582,7 @@ GameObject:
   - component: {fileID: 1876509639}
   - component: {fileID: 1876509638}
   - component: {fileID: 1876509637}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7470,7 +7613,7 @@ SphereCollider:
   m_GameObject: {fileID: 1876509635}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
@@ -8765,6 +8908,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 481373326}
     m_Modifications:
+    - target: {fileID: 43218609205516549, guid: 4b730691008201d45b83fdf0f814f14e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 780734203114849703, guid: 4b730691008201d45b83fdf0f814f14e, type: 3}
       propertyPath: m_Name
       value: ParkourRunner
@@ -8855,3 +9002,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goal: {fileID: 1177171374}
   agent: {fileID: 548697342836616130}
+--- !u!54 &548697342836616135
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 695137974}
+  serializedVersion: 2
+  m_Mass: 0.5
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
