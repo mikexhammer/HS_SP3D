@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TipToePlatform : MonoBehaviour
 {
+    public bool showPath;
+    //Test for Path
+    public Material testMaterial;
     enum State
     {
         Default,
@@ -61,6 +64,16 @@ public class TipToePlatform : MonoBehaviour
                 meshRend.material = defaultMaterial;
             }
         }
+        
+        if (showPath)
+        {
+            if (isPath)
+            {
+                meshRend.material = testMaterial;
+            }
+        }
+
+
     }
 
     private void ChangeState(State s)

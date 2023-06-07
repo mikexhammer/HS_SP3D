@@ -589,6 +589,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14d603a02f580ed44872b18456bd407b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  showPath: 0
+  testMaterial: {fileID: 2100000, guid: 731c36b6cbc2fd74b8d357792a4d6f7c, type: 2}
   isPath: 0
   defaultMaterial: {fileID: 2100000, guid: 58c42e534d477a44f9125e90532a00da, type: 2}
   touchedMaterial: {fileID: 2100000, guid: 731c36b6cbc2fd74b8d357792a4d6f7c, type: 2}
@@ -1256,6 +1258,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformPrefab: {fileID: 501321044}
+  areaWidth: 30
+  areaDepth: 39
+  spacing: 0.3
 --- !u!4 &2110526896
 Transform:
   m_ObjectHideFlags: 0
@@ -1264,7 +1269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110526894}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -21.199385, y: -0.55, z: 15.013223}
+  m_LocalPosition: {x: -7.5, y: -0.5, z: 33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
