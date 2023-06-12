@@ -10,8 +10,7 @@ public class ParkourRunner : MonoBehaviour
     void Start()
     {
         goalPos = goal.transform.position;
-        Debug.Log(goalPos);
-        
+
     }
 
     // Update is called once per frame

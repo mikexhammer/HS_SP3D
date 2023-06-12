@@ -1,12 +1,14 @@
-using System;
+
 using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
-using UnityEngine.UI;
+
 using TMPro;
+
+using UnityEngine.AI;
 using UnityEngine.Serialization;
 
-public class physicsCharacterControl : MonoBehaviour
+public class NPCphysicsCharacterControl : MonoBehaviour
 {
     private Rigidbody m_Rigidbody;
     private Animator m_Animator;
@@ -39,7 +41,9 @@ public class physicsCharacterControl : MonoBehaviour
     private float pushForce;
     private Vector3 pushDir;
     
-
+    //NPC Variables
+    private NavMeshAgent m_Agent;
+    
     void Start()
     {
         startPos = transform.position;
@@ -48,19 +52,22 @@ public class physicsCharacterControl : MonoBehaviour
         //Set Jump
         jump = new Vector3(0.0f, jumpHeight, 0.0f);
         m_Speed = m_WalkSpeed;
+        
+        //NPC
+        m_Agent = GetComponent<NavMeshAgent>();
+        m_Agent.updateRotation = false;
+        m_Agent.updatePosition = false;
     }
     private void Update()
     {
 
         if (canMove)
         {
-            if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
-                Jump();
-            }
-        
-            if ((Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0) && isGrounded == true) //Wenn Input != 0, dann bewege
+            //Tastatureingabe entfernt, falls NPC laufen will, lauf
+            if (m_Agent.desiredVelocity.magnitude > 0 && isGrounded == true) //Wenn Input != 0, dann bewege
             {
                 MoveCharacter();
+                m_Agent.nextPosition = m_Rigidbody.position;
             }
             
         }
@@ -68,8 +75,8 @@ public class physicsCharacterControl : MonoBehaviour
         {
             m_Rigidbody.velocity = pushDir * pushForce;
         }
-        
-        m_Animator.SetFloat("Speed", m_Rigidbody.velocity.magnitude / m_Speed);
+        //Geschummelt ;) /m_Speed rausgenommen damit Figur besser laeuft
+        m_Animator.SetFloat("Speed", m_Rigidbody.velocity.magnitude);
         
         CheckIdle();
     }
@@ -78,7 +85,7 @@ public class physicsCharacterControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(transform.position.y < -5)
+        if(transform.position.y < -.5)
         {
             ResetPosition();
         }
@@ -119,31 +126,20 @@ public class physicsCharacterControl : MonoBehaviour
     //*** Movement
     private void MoveCharacter()
     {
-        Vector3 m_Input = Camera.main.transform.forward * Input.GetAxis("Vertical") +
-                          Camera.main.transform.right * Input.GetAxis("Horizontal");
+        // Tastureingabe entfernt
+        // Vector3 m_Input = Camera.main.transform.forward * Input.GetAxis("Vertical") +
+        //                   Camera.main.transform.right * Input.GetAxis("Horizontal");
         
-            m_Input.y = 0;  //y = 0, damit Höhe nicht mit einberechnet wird
-            m_Input.Normalize(); // normalisieren für länge = 1; konstante Geschwindigkeit
-        
-           
-            // Wenn Shift Taste gedrückt soll m_speed * 2
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                m_Speed = m_RunSpeed;
-            }
-            else
-            {
-                m_Speed = m_WalkSpeed;
-            }
-            
-            
-            // Move per velocity
-            // m_Rigidbody.velocity = m_Speed * m_Input;
+        //NPC Einghabe
+        Vector3 m_Input = m_Agent.desiredVelocity;
 
-            // Move per force
-            m_Rigidbody.AddForce(m_Speed * m_Input, ForceMode.Acceleration);
+        m_Input.y = 0;  //y = 0, damit Höhe nicht mit einberechnet wird
+            m_Input.Normalize(); // normalisieren für länge = 1; konstante Geschwindigkeit
             
-            
+
+            // Move per force //Forcemode entfernt
+            m_Rigidbody.AddForce(m_Speed * m_Input);
+
             //Move per position
             // m_Rigidbody.MovePosition(Time.deltaTime * m_Speed * m_Input + transform.position);
             
@@ -157,12 +153,10 @@ public class physicsCharacterControl : MonoBehaviour
                         m_Input)); //Quaternion.LookRotation = Rotation von m_Input // Quaternion (von lateinisch quaternio ‚Vierheit') steht für: in der Mathematik ein Zahlbereich, der häufig für die Darstellung von Drehungen verwendet wird,
             }
             
-            if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
-                Jump();
-            }
-            
-            Debug.Log("test");
-            
+            //Jump entfernt
+            // if(Input.GetKeyDown(KeyCode.Space) && isGrounded){
+            //     Jump();
+            // }
     }
     
     private void Jump()
@@ -191,7 +185,9 @@ public class physicsCharacterControl : MonoBehaviour
 
     private void ResetPosition()
     {
-        transform.position = startPos;
+        transform.position = m_Agent.nextPosition;
+        // transform.position = startPos;
+
     }
     
     //*** Hit
@@ -232,5 +228,6 @@ public class physicsCharacterControl : MonoBehaviour
         m_Rigidbody.freezeRotation = !isOn;
     }
     }
+
 
 

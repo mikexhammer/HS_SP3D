@@ -110,8 +110,8 @@ NavMeshSettings:
     agentHeight: 2.41
     agentSlope: 45
     agentClimb: 1.37
-    ledgeDropHeight: 1.87
-    maxJumpAcrossDistance: 14.24
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
     minRegionArea: 4
     manualCellSize: 0
     cellSize: 0.016666668
@@ -301,7 +301,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6301604827301178422, guid: bffce625e7b290b46a485123add78156, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.66
       objectReference: {fileID: 0}
     - target: {fileID: 6301604827301178422, guid: bffce625e7b290b46a485123add78156, type: 3}
       propertyPath: m_LocalPosition.z
@@ -601,6 +601,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 772967694226464684, guid: 2169297674d446142aa6ad35aaced321, type: 3}
   m_PrefabInstance: {fileID: 4109905422321180919}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &582963047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 582963048}
+  m_Layer: 0
+  m_Name: LOGIK
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &582963048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582963047}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.661238, y: 2.735884, z: 6.7699428}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2110526896}
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &594000960
 GameObject:
   m_ObjectHideFlags: 0
@@ -668,37 +700,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1149248807}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &945121951
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 945121952}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &945121952
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 945121951}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -20.661238, y: 2.735884, z: 6.7699428}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1004369210 stripped
 GameObject:
@@ -795,6 +796,27 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1004369223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004369210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98b5c3e60f2eb9b489c3483174c34aff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textElement: {fileID: 1265488520}
+  m_WalkSpeed: 5
+  m_RunSpeed: 10
+  canMove: 1
+  jumpHeight: 2
+  jumpForce: 10
+  isGrounded: 0
+  startIdle: 5
+  agent: {fileID: 1004369221}
 --- !u!1 &1149248806
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,7 +1054,6 @@ Transform:
   - {fileID: 314424371}
   - {fileID: 1821740181}
   - {fileID: 543450652053141144}
-  - {fileID: 2110526896}
   - {fileID: 501321053}
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -1294,8 +1315,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e75290a81cd93847a3151aff786aa6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showPath: 1
+  showPath: 0
   platformPrefab: {fileID: 501321044}
+  width: 10
+  depth: 13
   areaWidth: 30
   areaDepth: 39
   spacing: 0.1
@@ -1307,12 +1330,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110526894}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.5, y: -0.5, z: 33}
+  m_LocalPosition: {x: 20.860622, y: -2.7944193, z: 21.216835}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1598197418}
-  m_RootOrder: 3
+  m_Father: {fileID: 582963048}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2110526897
 MonoBehaviour:
@@ -2210,7 +2233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 772967694226464684, guid: 2169297674d446142aa6ad35aaced321, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -31.79
+      value: -27.15
       objectReference: {fileID: 0}
     - target: {fileID: 772967694226464684, guid: 2169297674d446142aa6ad35aaced321, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2218,7 +2241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 772967694226464684, guid: 2169297674d446142aa6ad35aaced321, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 16.29
+      value: 8.85
       objectReference: {fileID: 0}
     - target: {fileID: 772967694226464684, guid: 2169297674d446142aa6ad35aaced321, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2349,8 +2372,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -2.5}
-  m_EndPoint: {x: 0, y: 0, z: 3.81}
+  m_StartPoint: {x: 0, y: 0, z: 0.5}
+  m_EndPoint: {x: 0, y: 0, z: 3.5}
   m_Width: 34.09
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -2975,8 +2998,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 0, z: -2.5}
-  m_EndPoint: {x: 0, y: 0, z: 3.57}
+  m_StartPoint: {x: 0, y: 0, z: 1}
+  m_EndPoint: {x: 0, y: 0, z: 3.5}
   m_Width: 36.27
   m_CostModifier: -1
   m_Bidirectional: 1

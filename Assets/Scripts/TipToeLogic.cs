@@ -6,17 +6,21 @@ using UnityEngine;
 using UnityEngine.AI;
 public class TipToeLogic : MonoBehaviour
 {
-    public bool showPath = false;
+    [Header("Zeige den Path im Spiel an")]
+    [SerializeField] public bool showPath = false;
     [SerializeField] private GameObject platformPrefab;
     //Anzahl der Platten auf dem Feld
-    private int width = 10;
-    private int depth = 13;
+    [Header("Anzahl der Platformen")]
+    [SerializeField] private int width = 10;
+    [SerializeField] private int depth = 13;
 
     //Abmasse des Feldes
-    public float areaWidth = 30;
-    public float areaDepth = 39;
+    [Header("Abmasse des Feldes")]
+    [SerializeField] private float areaWidth = 30;
+    [SerializeField] private float areaDepth = 39;
     //Abstand zwischen den Platten
-    public float spacing = 0.3f;
+    [Header("Abstand zwischen den Platformen")]
+    [SerializeField] private float spacing = 0.3f;
 
     private NavMeshSurface nms;
     
@@ -48,18 +52,14 @@ public class TipToeLogic : MonoBehaviour
 
                 // Setzen des Pfades durch Überprüfung ob die Koordinate in der Menge enthalten ist
                 tipToePlatform.isPath = path.Contains(new Vector2Int(xIndex, zIndex));
-                NavMeshModifier nmm = platform.GetComponent<NavMeshModifier>();
-                Debug.Log("Area: " );
+                NavMeshModifier nmm = platform.GetComponent<NavMeshModifier>(); 
                 nmm.overrideArea = true;
-
                 if (tipToePlatform.isPath)
                 {
-                    Debug.Log("True");
                     nmm.area = 0;
                 }
                 else
                 {
-                    Debug.Log("False");
                     nmm.area = 1;
                 }
             }
@@ -128,7 +128,10 @@ public class TipToeLogic : MonoBehaviour
     private static HashSet<Vector2Int> GeneratePath(int width, int depth)
     {
         HashSet<Vector2Int> path = new HashSet<Vector2Int>();
+        //Random.Range gibt eine zufällige Zahl zwischen min (inklusive) und max (exklusive) zurück
         int startX = Random.Range(0, width);
+        //Falls die Generierung des Pfades fehlschlägt, wird der Pfad neu generiert
+        //HasGoodNeighborhood gibt true zurück, wenn der Pfad erfolgreich generiert wurde
         if (!HasGoodNeighborhood(width, depth, new Vector2Int(startX, 0), path)){
             Debug.LogError("Error generating path");
         }
