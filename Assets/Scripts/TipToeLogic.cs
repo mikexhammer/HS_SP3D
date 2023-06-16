@@ -51,6 +51,7 @@ public class TipToeLogic : MonoBehaviour
                 tipToePlatform.showPath = showPath;
 
                 // Setzen des Pfades durch Überprüfung ob die Koordinate in der Menge enthalten ist
+                //VectorInt2 ist ein selbstgeschriebener Datentyp, der zwei int-Werte enthält
                 tipToePlatform.isPath = path.Contains(new Vector2Int(xIndex, zIndex));
                 NavMeshModifier nmm = platform.GetComponent<NavMeshModifier>(); 
                 nmm.overrideArea = true;
@@ -69,13 +70,31 @@ public class TipToeLogic : MonoBehaviour
         nms.BuildNavMesh();
         
     }
+    
+    //Generierung des Pfades, gibt eine Menge von Koordinaten (x,y) zurück
+    // HashSet ist eine Menge, welche keine doppelten Elemente enthalten kann
+    // ISet ist ein Interface, welches von HashSet implementiert wird
+    private static HashSet<Vector2Int> GeneratePath(int width, int depth)
+    {
+        HashSet<Vector2Int> path = new HashSet<Vector2Int>();
+        //Random.Range gibt eine zufällige Zahl zwischen min (inklusive) und max (exklusive) zurück
+        int startX = Random.Range(0, width);
+        //Falls die Generierung des Pfades fehlschlägt, wird der Pfad neu generiert
+        //HasGoodNeighborhood gibt true zurück, wenn der Pfad erfolgreich generiert wurde
+        if (!GenerateRecursive(width, depth, new Vector2Int(startX, 0), path)){
+            Debug.LogError("Error generating path");
+        }
+        return path;
+    }
+
 
   
 
     // Rekursive Funktion zur Generierung des Pfades, verwendet Backtracking 
     // https://en.wikipedia.org/wiki/Backtracking
     // wählt zufällig eine Richtung aus und prüft ob diese gültig ist
-    private static bool HasGoodNeighborhood(int width, int depth, Vector2Int pos, HashSet<Vector2Int> path)
+    // https://gamedev.stackexchange.com/questions/162915/creating-random-path-in-grid
+    private static bool GenerateRecursive(int width, int depth, Vector2Int pos, HashSet<Vector2Int> path)
     {
         // Prüfung ob die Koordinate ausserhalb des Feldes liegt oder bereits im Pfad enthalten ist
         if (pos.x >= width || pos.x < 0 || pos.y >= depth || pos.y < 0 || path.Contains(pos))
@@ -112,7 +131,7 @@ public class TipToeLogic : MonoBehaviour
         // Rekursiver Aufruf für jede Richtung
         foreach(Vector2Int next in toExplore)
         {
-            if (HasGoodNeighborhood(width, depth,next, path))
+            if (GenerateRecursive(width, depth,next, path))
             {
                 return true;
             }
@@ -122,22 +141,7 @@ public class TipToeLogic : MonoBehaviour
         return false;
     }
 
-    //Generierung des Pfades, gibt eine Menge von Koordinaten (x,y) zurück
-    // HashSet ist eine Menge, welche keine doppelten Elemente enthalten kann
-    // ISet ist ein Interface, welches von HashSet implementiert wird
-    private static HashSet<Vector2Int> GeneratePath(int width, int depth)
-    {
-        HashSet<Vector2Int> path = new HashSet<Vector2Int>();
-        //Random.Range gibt eine zufällige Zahl zwischen min (inklusive) und max (exklusive) zurück
-        int startX = Random.Range(0, width);
-        //Falls die Generierung des Pfades fehlschlägt, wird der Pfad neu generiert
-        //HasGoodNeighborhood gibt true zurück, wenn der Pfad erfolgreich generiert wurde
-        if (!HasGoodNeighborhood(width, depth, new Vector2Int(startX, 0), path)){
-            Debug.LogError("Error generating path");
-        }
-        return path;
-    }
-    
+
     
     // Zählt die Anzahl Nachbarn einer Koordinate im Pfad
     // https://docs.microsoft.com/en-us/dotnet/api/system.collections.generic.iset-1?view=net-5.0
